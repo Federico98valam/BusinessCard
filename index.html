@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Federico Brambilla — Valori Asset Management</title>
+<meta name="description" content="Federico Brambilla — Assistant Portfolio Manager & Analyst, Valori Asset Management">
+<meta name="theme-color" content="#761D34">
+<meta property="og:title" content="Federico Brambilla — Valori Asset Management">
+<meta property="og:description" content="Assistant Portfolio Manager & Analyst">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* colori ufficiali Valori */
+    --bordeaux:#761D34;
+    --bordeaux-dark:#5F1729;
+    --gold:#C6985F;
+    --paper:#FDFDFB;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    min-height:100vh;
+    min-height:100dvh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:28px;
+    background:linear-gradient(160deg,#EFEDE8 0%,#E3E0D8 100%);
+    font-family:'Jost','Futura','Century Gothic',sans-serif;
+    padding:32px 16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .scene{
+    width:min(520px,92vw);
+    aspect-ratio:85/55;
+    perspective:1600px;
+    cursor:pointer;
+    container-type:inline-size;
+    border-radius:12px;
+    outline-offset:6px;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .scene:focus-visible{outline:2px solid var(--bordeaux);}
+  .card{
+    position:relative;
+    width:100%;height:100%;
+    transform-style:preserve-3d;
+    transition:transform .8s cubic-bezier(.4,.15,.2,1);
+  }
+  .scene.flipped .card{transform:rotateY(180deg);}
+  .face{
+    position:absolute;inset:0;
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+    border-radius:12px;
+    box-shadow:0 18px 45px rgba(60,30,35,.28),0 4px 12px rgba(60,30,35,.15);
+    overflow:hidden;
+  }
+  /* ---------- FRONTE ---------- */
+  .front{
+    background:var(--paper);
+    padding:7.5% 8.5%;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+  .name{
+    font-size:clamp(18px,5.4cqw,30px);
+    font-weight:700;
+    letter-spacing:.06em;
+    color:var(--bordeaux);
+    text-transform:uppercase;
+    line-height:1.15;
+  }
+  .role{
+    font-size:clamp(11px,3.1cqw,17px);
+    font-weight:300;
+    font-style:italic;
+    color:var(--gold);
+    margin-top:2px;
+    letter-spacing:.02em;
+  }
+  .contact{
+    margin-top:10px;
+    font-size:clamp(11px,3.1cqw,17px);
+    color:var(--bordeaux);
+    line-height:1.45;
+    font-weight:400;
+  }
+  .contact a{color:var(--bordeaux);text-decoration:none;}
+  .bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:12px;
+  }
+  .qr{width:30%;max-width:130px;aspect-ratio:1;flex:none;}
+  .qr svg{width:100%;height:100%;display:block;}
+  .addr{
+    text-align:left;
+    font-size:clamp(10px,2.9cqw,16px);
+    color:var(--bordeaux);
+    line-height:1.5;
+  }
+  .addr .site{
+    color:var(--gold);
+    font-weight:700;
+    letter-spacing:.04em;
+    margin-top:6px;
+  }
+  .addr a{text-decoration:none;color:inherit;}
+  .contact a:hover,.addr a:hover{text-decoration:underline;}
+  /* ---------- RETRO ---------- */
+  .back{
+    background:var(--bordeaux);
+    background:linear-gradient(165deg,#7E2038 0%,#761D34 55%,#6C1A2F 100%);
+    transform:rotateY(180deg);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .lockup{width:46%;max-width:230px;}
+  .lockup svg{width:100%;height:auto;display:block;}
+  .hint{
+    font-size:12.5px;
+    color:#6F695F;
+    letter-spacing:.05em;
+  }
+  /* ---------- AZIONI ---------- */
+  .actions{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:11px 20px;
+    border-radius:999px;
+    border:1.5px solid var(--bordeaux);
+    color:var(--bordeaux);
+    background:rgba(255,255,255,.65);
+    font-family:inherit;
+    font-size:14.5px;
+    font-weight:500;
+    letter-spacing:.03em;
+    text-decoration:none;
+    cursor:pointer;
+    transition:background-color .2s ease,color .2s ease,transform .2s ease;
+  }
+  .btn:hover{background:var(--bordeaux);color:#fff;transform:translateY(-1px);}
+  .btn:active{transform:translateY(0) scale(.98);}
+  .btn:focus-visible{outline:2px solid var(--bordeaux);outline-offset:3px;}
+  .btn.primary{background:var(--bordeaux);color:#fff;border-color:var(--bordeaux);}
+  .btn.primary:hover{background:var(--bordeaux-dark);}
+  .btn svg{width:16px;height:16px;flex:none;}
+  @media (prefers-reduced-motion:reduce){
+    .card,.btn{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="scene" id="scene" role="button" tabindex="0" aria-label="Biglietto da visita di Federico Brambilla. Premi per girarlo" title="Clicca per girare il biglietto">
+  <div class="card">
+    <!-- FRONTE -->
+    <div class="face front">
+      <div>
+        <div class="name">Federico Brambilla</div>
+        <div class="role">Assistant Portfolio Manager &amp; Analyst</div>
+        <div class="contact">
+          <a href="mailto:federico.brambilla@valam.ch">federico.brambilla@valam.ch</a>
+        </div>
+      </div>
+      <div class="bottom">
+        <div class="qr" role="img" aria-label="Codice QR con il contatto di Federico Brambilla"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61 61" shape-rendering="crispEdges" aria-hidden="true"><path fill="#761D34" d="M0 0h7v1h-7zM8 0h1v1h-1zM11 0h1v1h-1zM13 0h2v1h-2zM17 0h1v1h-1zM20 0h7v1h-7zM28 0h9v1h-9zM38 0h3v1h-3zM42 0h1v1h-1zM44 0h4v1h-4zM49 0h1v1h-1zM51 0h2v1h-2zM54 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM9 1h1v1h-1zM11 1h1v1h-1zM16 1h2v1h-2zM19 1h1v1h-1zM23 1h2v1h-2zM29 1h2v1h-2zM32 1h3v1h-3zM36 1h2v1h-2zM39 1h4v1h-4zM45 1h3v1h-3zM49 1h1v1h-1zM51 1h2v1h-2zM54 1h1v1h-1zM60 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM10 2h2v1h-2zM13 2h1v1h-1zM19 2h2v1h-2zM22 2h2v1h-2zM27 2h6v1h-6zM37 2h1v1h-1zM41 2h2v1h-2zM44 2h1v1h-1zM46 2h2v1h-2zM49 2h4v1h-4zM54 2h1v1h-1zM56 2h3v1h-3zM60 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM9 3h1v1h-1zM11 3h5v1h-5zM18 3h1v1h-1zM20 3h8v1h-8zM31 3h2v1h-2zM35 3h2v1h-2zM38 3h7v1h-7zM46 3h3v1h-3zM50 3h1v1h-1zM52 3h1v1h-1zM54 3h1v1h-1zM56 3h3v1h-3zM60 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM12 4h1v1h-1zM15 4h1v1h-1zM17 4h1v1h-1zM20 4h3v1h-3zM24 4h3v1h-3zM28 4h5v1h-5zM35 4h5v1h-5zM42 4h2v1h-2zM48 4h4v1h-4zM54 4h1v1h-1zM56 4h3v1h-3zM60 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM9 5h6v1h-6zM16 5h4v1h-4zM21 5h1v1h-1zM25 5h1v1h-1zM28 5h1v1h-1zM32 5h2v1h-2zM37 5h1v1h-1zM40 5h1v1h-1zM42 5h1v1h-1zM46 5h1v1h-1zM48 5h3v1h-3zM54 5h1v1h-1zM60 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h1v1h-1zM24 6h1v1h-1zM26 6h1v1h-1zM28 6h1v1h-1zM30 6h1v1h-1zM32 6h1v1h-1zM34 6h1v1h-1zM36 6h1v1h-1zM38 6h1v1h-1zM40 6h1v1h-1zM42 6h1v1h-1zM44 6h1v1h-1zM46 6h1v1h-1zM48 6h1v1h-1zM50 6h1v1h-1zM52 6h1v1h-1zM54 6h7v1h-7zM8 7h1v1h-1zM10 7h1v1h-1zM12 7h1v1h-1zM17 7h2v1h-2zM21 7h1v1h-1zM25 7h4v1h-4zM32 7h1v1h-1zM35 7h1v1h-1zM37 7h4v1h-4zM45 7h1v1h-1zM48 7h2v1h-2zM0 8h2v1h-2zM3 8h2v1h-2zM6 8h1v1h-1zM9 8h5v1h-5zM15 8h1v1h-1zM18 8h2v1h-2zM21 8h2v1h-2zM24 8h2v1h-2zM27 8h7v1h-7zM35 8h2v1h-2zM39 8h2v1h-2zM43 8h1v1h-1zM46 8h6v1h-6zM54 8h1v1h-1zM60 8h1v1h-1zM0 9h1v1h-1zM3 9h1v1h-1zM5 9h1v1h-1zM11 9h2v1h-2zM15 9h5v1h-5zM22 9h1v1h-1zM24 9h2v1h-2zM27 9h2v1h-2zM30 9h1v1h-1zM33 9h4v1h-4zM38 9h1v1h-1zM40 9h3v1h-3zM45 9h2v1h-2zM48 9h7v1h-7zM58 9h1v1h-1zM60 9h1v1h-1zM1 10h2v1h-2zM6 10h2v1h-2zM9 10h2v1h-2zM14 10h1v1h-1zM16 10h2v1h-2zM23 10h2v1h-2zM26 10h2v1h-2zM29 10h1v1h-1zM31 10h4v1h-4zM36 10h2v1h-2zM41 10h3v1h-3zM45 10h1v1h-1zM48 10h3v1h-3zM53 10h5v1h-5zM60 10h1v1h-1zM1 11h1v1h-1zM4 11h2v1h-2zM10 11h4v1h-4zM16 11h2v1h-2zM19 11h2v1h-2zM24 11h1v1h-1zM26 11h5v1h-5zM32 11h1v1h-1zM35 11h1v1h-1zM41 11h3v1h-3zM46 11h1v1h-1zM48 11h2v1h-2zM52 11h8v1h-8zM0 12h1v1h-1zM2 12h2v1h-2zM5 12h3v1h-3zM9 12h1v1h-1zM13 12h3v1h-3zM18 12h2v1h-2zM22 12h2v1h-2zM26 12h2v1h-2zM34 12h3v1h-3zM39 12h2v1h-2zM44 12h2v1h-2zM48 12h1v1h-1zM50 12h2v1h-2zM53 12h8v1h-8zM0 13h1v1h-1zM2 13h1v1h-1zM8 13h1v1h-1zM10 13h2v1h-2zM15 13h1v1h-1zM18 13h3v1h-3zM22 13h4v1h-4zM27 13h2v1h-2zM30 13h1v1h-1zM32 13h2v1h-2zM35 13h1v1h-1zM37 13h2v1h-2zM41 13h3v1h-3zM45 13h1v1h-1zM50 13h2v1h-2zM53 13h2v1h-2zM1 14h2v1h-2zM5 14h3v1h-3zM11 14h1v1h-1zM13 14h1v1h-1zM16 14h3v1h-3zM21 14h1v1h-1zM25 14h1v1h-1zM29 14h1v1h-1zM33 14h1v1h-1zM35 14h2v1h-2zM38 14h1v1h-1zM40 14h1v1h-1zM43 14h3v1h-3zM49 14h2v1h-2zM54 14h1v1h-1zM56 14h1v1h-1zM58 14h3v1h-3zM2 15h1v1h-1zM5 15h1v1h-1zM11 15h4v1h-4zM16 15h1v1h-1zM20 15h1v1h-1zM24 15h3v1h-3zM28 15h3v1h-3zM32 15h1v1h-1zM35 15h1v1h-1zM37 15h1v1h-1zM41 15h3v1h-3zM48 15h2v1h-2zM51 15h2v1h-2zM54 15h1v1h-1zM57 15h3v1h-3zM0 16h1v1h-1zM2 16h2v1h-2zM5 16h4v1h-4zM10 16h1v1h-1zM14 16h1v1h-1zM18 16h2v1h-2zM21 16h1v1h-1zM23 16h4v1h-4zM29 16h1v1h-1zM31 16h3v1h-3zM35 16h2v1h-2zM38 16h1v1h-1zM44 16h3v1h-3zM48 16h4v1h-4zM54 16h7v1h-7zM0 17h1v1h-1zM3 17h1v1h-1zM7 17h2v1h-2zM12 17h2v1h-2zM16 17h2v1h-2zM22 17h3v1h-3zM26 17h3v1h-3zM32 17h1v1h-1zM34 17h4v1h-4zM39 17h2v1h-2zM42 17h2v1h-2zM46 17h1v1h-1zM52 17h1v1h-1zM54 17h1v1h-1zM59 17h1v1h-1zM3 18h4v1h-4zM8 18h1v1h-1zM10 18h1v1h-1zM12 18h1v1h-1zM16 18h5v1h-5zM23 18h2v1h-2zM26 18h2v1h-2zM29 18h1v1h-1zM32 18h1v1h-1zM35 18h1v1h-1zM37 18h1v1h-1zM39 18h1v1h-1zM41 18h2v1h-2zM44 18h1v1h-1zM49 18h1v1h-1zM52 18h3v1h-3zM57 18h2v1h-2zM60 18h1v1h-1zM1 19h1v1h-1zM3 19h2v1h-2zM7 19h4v1h-4zM14 19h1v1h-1zM18 19h1v1h-1zM21 19h1v1h-1zM23 19h2v1h-2zM30 19h2v1h-2zM33 19h1v1h-1zM37 19h4v1h-4zM42 19h1v1h-1zM46 19h1v1h-1zM49 19h1v1h-1zM51 19h2v1h-2zM55 19h1v1h-1zM57 19h1v1h-1zM1 20h3v1h-3zM6 20h2v1h-2zM9 20h1v1h-1zM12 20h2v1h-2zM15 20h1v1h-1zM17 20h3v1h-3zM22 20h2v1h-2zM27 20h1v1h-1zM29 20h1v1h-1zM32 20h2v1h-2zM35 20h3v1h-3zM40 20h1v1h-1zM46 20h3v1h-3zM50 20h1v1h-1zM53 20h1v1h-1zM55 20h1v1h-1zM57 20h1v1h-1zM60 20h1v1h-1zM2 21h3v1h-3zM7 21h2v1h-2zM11 21h2v1h-2zM14 21h1v1h-1zM16 21h3v1h-3zM20 21h1v1h-1zM24 21h1v1h-1zM26 21h5v1h-5zM32 21h4v1h-4zM37 21h2v1h-2zM40 21h7v1h-7zM49 21h2v1h-2zM52 21h1v1h-1zM54 21h1v1h-1zM56 21h3v1h-3zM1 22h1v1h-1zM3 22h2v1h-2zM6 22h1v1h-1zM8 22h2v1h-2zM12 22h1v1h-1zM14 22h1v1h-1zM19 22h4v1h-4zM27 22h2v1h-2zM31 22h4v1h-4zM41 22h2v1h-2zM44 22h1v1h-1zM47 22h1v1h-1zM49 22h2v1h-2zM52 22h1v1h-1zM55 22h2v1h-2zM59 22h2v1h-2zM3 23h3v1h-3zM8 23h1v1h-1zM11 23h1v1h-1zM14 23h1v1h-1zM16 23h2v1h-2zM23 23h1v1h-1zM26 23h3v1h-3zM30 23h1v1h-1zM32 23h1v1h-1zM35 23h1v1h-1zM38 23h2v1h-2zM41 23h2v1h-2zM45 23h1v1h-1zM48 23h2v1h-2zM52 23h4v1h-4zM57 23h2v1h-2zM60 23h1v1h-1zM1 24h4v1h-4zM6 24h1v1h-1zM9 24h4v1h-4zM14 24h2v1h-2zM20 24h1v1h-1zM22 24h1v1h-1zM26 24h4v1h-4zM31 24h1v1h-1zM34 24h1v1h-1zM36 24h1v1h-1zM38 24h4v1h-4zM44 24h3v1h-3zM48 24h2v1h-2zM51 24h1v1h-1zM56 24h4v1h-4zM1 25h2v1h-2zM5 25h1v1h-1zM7 25h1v1h-1zM10 25h1v1h-1zM12 25h4v1h-4zM18 25h3v1h-3zM23 25h2v1h-2zM26 25h2v1h-2zM31 25h1v1h-1zM33 25h1v1h-1zM36 25h8v1h-8zM50 25h2v1h-2zM53 25h3v1h-3zM60 25h1v1h-1zM0 26h4v1h-4zM5 26h2v1h-2zM9 26h2v1h-2zM12 26h1v1h-1zM14 26h1v1h-1zM16 26h2v1h-2zM21 26h1v1h-1zM23 26h1v1h-1zM25 26h5v1h-5zM31 26h1v1h-1zM33 26h1v1h-1zM35 26h2v1h-2zM38 26h2v1h-2zM41 26h1v1h-1zM43 26h2v1h-2zM49 26h1v1h-1zM51 26h2v1h-2zM54 26h3v1h-3zM58 26h3v1h-3zM0 27h4v1h-4zM7 27h1v1h-1zM17 27h1v1h-1zM20 27h3v1h-3zM24 27h10v1h-10zM35 27h1v1h-1zM39 27h1v1h-1zM44 27h2v1h-2zM48 27h2v1h-2zM51 27h1v1h-1zM53 27h1v1h-1zM57 27h2v1h-2zM1 28h9v1h-9zM13 28h4v1h-4zM18 28h1v1h-1zM20 28h1v1h-1zM25 28h2v1h-2zM28 28h5v1h-5zM34 28h1v1h-1zM36 28h1v1h-1zM42 28h1v1h-1zM44 28h2v1h-2zM47 28h10v1h-10zM58 28h3v1h-3zM0 29h3v1h-3zM4 29h1v1h-1zM8 29h1v1h-1zM11 29h3v1h-3zM15 29h2v1h-2zM18 29h2v1h-2zM24 29h1v1h-1zM26 29h1v1h-1zM28 29h1v1h-1zM32 29h1v1h-1zM34 29h1v1h-1zM42 29h2v1h-2zM45 29h2v1h-2zM48 29h2v1h-2zM51 29h2v1h-2zM56 29h2v1h-2zM59 29h2v1h-2zM0 30h1v1h-1zM2 30h1v1h-1zM4 30h1v1h-1zM6 30h1v1h-1zM8 30h1v1h-1zM12 30h2v1h-2zM15 30h1v1h-1zM18 30h6v1h-6zM28 30h1v1h-1zM30 30h1v1h-1zM32 30h2v1h-2zM36 30h2v1h-2zM45 30h1v1h-1zM49 30h1v1h-1zM52 30h1v1h-1zM54 30h1v1h-1zM56 30h1v1h-1zM58 30h1v1h-1zM60 30h1v1h-1zM1 31h1v1h-1zM3 31h2v1h-2zM8 31h1v1h-1zM11 31h3v1h-3zM15 31h1v1h-1zM17 31h4v1h-4zM24 31h2v1h-2zM28 31h1v1h-1zM32 31h1v1h-1zM35 31h1v1h-1zM37 31h2v1h-2zM40 31h2v1h-2zM43 31h2v1h-2zM48 31h1v1h-1zM52 31h1v1h-1zM56 31h2v1h-2zM59 31h1v1h-1zM2 32h1v1h-1zM4 32h5v1h-5zM10 32h3v1h-3zM14 32h6v1h-6zM21 32h2v1h-2zM24 32h1v1h-1zM27 32h8v1h-8zM36 32h1v1h-1zM40 32h2v1h-2zM47 32h4v1h-4zM52 32h6v1h-6zM5 33h1v1h-1zM7 33h3v1h-3zM12 33h2v1h-2zM15 33h1v1h-1zM19 33h2v1h-2zM22 33h3v1h-3zM29 33h3v1h-3zM34 33h3v1h-3zM38 33h1v1h-1zM41 33h2v1h-2zM44 33h1v1h-1zM46 33h5v1h-5zM52 33h5v1h-5zM59 33h1v1h-1zM1 34h2v1h-2zM6 34h1v1h-1zM10 34h4v1h-4zM15 34h2v1h-2zM18 34h4v1h-4zM23 34h1v1h-1zM25 34h1v1h-1zM27 34h1v1h-1zM29 34h1v1h-1zM32 34h2v1h-2zM36 34h2v1h-2zM39 34h1v1h-1zM42 34h1v1h-1zM44 34h4v1h-4zM51 34h1v1h-1zM54 34h2v1h-2zM60 34h1v1h-1zM0 35h6v1h-6zM11 35h1v1h-1zM15 35h1v1h-1zM17 35h1v1h-1zM20 35h1v1h-1zM23 35h4v1h-4zM28 35h4v1h-4zM34 35h2v1h-2zM37 35h3v1h-3zM45 35h2v1h-2zM52 35h2v1h-2zM57 35h3v1h-3zM0 36h1v1h-1zM2 36h2v1h-2zM6 36h1v1h-1zM9 36h2v1h-2zM12 36h1v1h-1zM14 36h2v1h-2zM18 36h2v1h-2zM22 36h1v1h-1zM26 36h5v1h-5zM32 36h1v1h-1zM34 36h1v1h-1zM36 36h1v1h-1zM40 36h3v1h-3zM44 36h3v1h-3zM48 36h1v1h-1zM51 36h5v1h-5zM57 36h1v1h-1zM59 36h2v1h-2zM0 37h1v1h-1zM2 37h1v1h-1zM7 37h2v1h-2zM13 37h3v1h-3zM20 37h1v1h-1zM22 37h1v1h-1zM24 37h1v1h-1zM26 37h2v1h-2zM30 37h4v1h-4zM38 37h1v1h-1zM42 37h2v1h-2zM45 37h1v1h-1zM48 37h1v1h-1zM50 37h1v1h-1zM52 37h1v1h-1zM54 37h1v1h-1zM56 37h2v1h-2zM0 38h1v1h-1zM6 38h1v1h-1zM8 38h1v1h-1zM11 38h1v1h-1zM15 38h2v1h-2zM18 38h2v1h-2zM22 38h1v1h-1zM27 38h2v1h-2zM31 38h3v1h-3zM35 38h2v1h-2zM38 38h1v1h-1zM40 38h2v1h-2zM43 38h6v1h-6zM50 38h2v1h-2zM53 38h3v1h-3zM59 38h2v1h-2zM0 39h4v1h-4zM7 39h1v1h-1zM9 39h1v1h-1zM12 39h1v1h-1zM15 39h5v1h-5zM21 39h2v1h-2zM28 39h1v1h-1zM31 39h2v1h-2zM34 39h1v1h-1zM38 39h1v1h-1zM42 39h1v1h-1zM44 39h1v1h-1zM48 39h6v1h-6zM55 39h1v1h-1zM57 39h2v1h-2zM6 40h2v1h-2zM12 40h2v1h-2zM15 40h4v1h-4zM20 40h1v1h-1zM25 40h3v1h-3zM30 40h3v1h-3zM34 40h1v1h-1zM36 40h4v1h-4zM41 40h1v1h-1zM44 40h1v1h-1zM46 40h6v1h-6zM53 40h1v1h-1zM55 40h1v1h-1zM57 40h1v1h-1zM59 40h2v1h-2zM0 41h1v1h-1zM2 41h1v1h-1zM5 41h1v1h-1zM7 41h1v1h-1zM9 41h1v1h-1zM11 41h1v1h-1zM13 41h1v1h-1zM15 41h2v1h-2zM18 41h3v1h-3zM22 41h1v1h-1zM24 41h1v1h-1zM27 41h1v1h-1zM29 41h2v1h-2zM33 41h2v1h-2zM36 41h1v1h-1zM42 41h2v1h-2zM45 41h2v1h-2zM48 41h2v1h-2zM52 41h1v1h-1zM55 41h1v1h-1zM58 41h1v1h-1zM1 42h1v1h-1zM4 42h4v1h-4zM10 42h2v1h-2zM13 42h3v1h-3zM17 42h3v1h-3zM21 42h2v1h-2zM24 42h4v1h-4zM30 42h4v1h-4zM36 42h1v1h-1zM39 42h1v1h-1zM41 42h1v1h-1zM46 42h1v1h-1zM50 42h1v1h-1zM52 42h3v1h-3zM56 42h1v1h-1zM59 42h2v1h-2zM2 43h1v1h-1zM5 43h1v1h-1zM8 43h2v1h-2zM11 43h1v1h-1zM14 43h1v1h-1zM21 43h1v1h-1zM28 43h5v1h-5zM35 43h1v1h-1zM40 43h1v1h-1zM42 43h3v1h-3zM48 43h1v1h-1zM50 43h4v1h-4zM56 43h2v1h-2zM59 43h2v1h-2zM1 44h2v1h-2zM5 44h2v1h-2zM11 44h2v1h-2zM14 44h1v1h-1zM16 44h5v1h-5zM22 44h1v1h-1zM24 44h1v1h-1zM27 44h4v1h-4zM33 44h4v1h-4zM38 44h1v1h-1zM40 44h2v1h-2zM43 44h1v1h-1zM46 44h1v1h-1zM48 44h1v1h-1zM51 44h1v1h-1zM54 44h1v1h-1zM56 44h1v1h-1zM60 44h1v1h-1zM0 45h1v1h-1zM2 45h2v1h-2zM5 45h1v1h-1zM12 45h2v1h-2zM15 45h2v1h-2zM18 45h1v1h-1zM20 45h1v1h-1zM23 45h2v1h-2zM29 45h1v1h-1zM31 45h1v1h-1zM33 45h3v1h-3zM38 45h5v1h-5zM44 45h3v1h-3zM48 45h3v1h-3zM52 45h3v1h-3zM56 45h1v1h-1zM58 45h2v1h-2zM3 46h1v1h-1zM5 46h4v1h-4zM11 46h2v1h-2zM15 46h2v1h-2zM18 46h3v1h-3zM22 46h3v1h-3zM26 46h2v1h-2zM30 46h1v1h-1zM33 46h1v1h-1zM36 46h1v1h-1zM39 46h1v1h-1zM43 46h4v1h-4zM48 46h1v1h-1zM51 46h1v1h-1zM54 46h1v1h-1zM57 46h4v1h-4zM2 47h1v1h-1zM5 47h1v1h-1zM8 47h6v1h-6zM17 47h3v1h-3zM23 47h3v1h-3zM27 47h5v1h-5zM33 47h1v1h-1zM38 47h1v1h-1zM41 47h3v1h-3zM45 47h1v1h-1zM47 47h2v1h-2zM51 47h1v1h-1zM54 47h6v1h-6zM1 48h2v1h-2zM5 48h4v1h-4zM10 48h2v1h-2zM13 48h2v1h-2zM16 48h1v1h-1zM18 48h3v1h-3zM24 48h1v1h-1zM26 48h1v1h-1zM30 48h1v1h-1zM32 48h1v1h-1zM34 48h3v1h-3zM40 48h2v1h-2zM44 48h2v1h-2zM48 48h1v1h-1zM51 48h4v1h-4zM57 48h1v1h-1zM60 48h1v1h-1zM1 49h1v1h-1zM3 49h3v1h-3zM8 49h2v1h-2zM11 49h1v1h-1zM13 49h1v1h-1zM20 49h1v1h-1zM23 49h3v1h-3zM28 49h5v1h-5zM35 49h2v1h-2zM38 49h2v1h-2zM41 49h2v1h-2zM44 49h1v1h-1zM47 49h1v1h-1zM50 49h5v1h-5zM56 49h1v1h-1zM2 50h6v1h-6zM10 50h1v1h-1zM13 50h2v1h-2zM16 50h2v1h-2zM21 50h1v1h-1zM23 50h3v1h-3zM27 50h1v1h-1zM29 50h1v1h-1zM31 50h1v1h-1zM33 50h2v1h-2zM37 50h1v1h-1zM42 50h3v1h-3zM48 50h3v1h-3zM52 50h3v1h-3zM56 50h1v1h-1zM58 50h3v1h-3zM0 51h3v1h-3zM4 51h1v1h-1zM9 51h1v1h-1zM12 51h2v1h-2zM16 51h2v1h-2zM20 51h3v1h-3zM24 51h1v1h-1zM28 51h6v1h-6zM38 51h2v1h-2zM43 51h1v1h-1zM45 51h1v1h-1zM47 51h1v1h-1zM49 51h2v1h-2zM56 51h3v1h-3zM0 52h4v1h-4zM6 52h1v1h-1zM8 52h5v1h-5zM16 52h1v1h-1zM18 52h1v1h-1zM25 52h2v1h-2zM28 52h6v1h-6zM36 52h1v1h-1zM41 52h1v1h-1zM44 52h2v1h-2zM48 52h2v1h-2zM51 52h6v1h-6zM58 52h1v1h-1zM8 53h4v1h-4zM14 53h4v1h-4zM19 53h1v1h-1zM23 53h2v1h-2zM28 53h1v1h-1zM32 53h6v1h-6zM40 53h1v1h-1zM42 53h2v1h-2zM45 53h2v1h-2zM48 53h2v1h-2zM52 53h1v1h-1zM56 53h1v1h-1zM0 54h7v1h-7zM9 54h1v1h-1zM12 54h1v1h-1zM15 54h2v1h-2zM19 54h2v1h-2zM25 54h2v1h-2zM28 54h1v1h-1zM30 54h1v1h-1zM32 54h2v1h-2zM36 54h1v1h-1zM39 54h1v1h-1zM41 54h1v1h-1zM44 54h4v1h-4zM49 54h1v1h-1zM52 54h1v1h-1zM54 54h1v1h-1zM56 54h1v1h-1zM58 54h1v1h-1zM60 54h1v1h-1zM0 55h1v1h-1zM6 55h1v1h-1zM10 55h4v1h-4zM15 55h2v1h-2zM21 55h1v1h-1zM28 55h1v1h-1zM32 55h3v1h-3zM38 55h3v1h-3zM42 55h4v1h-4zM48 55h3v1h-3zM52 55h1v1h-1zM56 55h2v1h-2zM59 55h1v1h-1zM0 56h1v1h-1zM2 56h3v1h-3zM6 56h1v1h-1zM8 56h1v1h-1zM10 56h2v1h-2zM13 56h1v1h-1zM17 56h1v1h-1zM22 56h2v1h-2zM27 56h6v1h-6zM35 56h9v1h-9zM45 56h2v1h-2zM48 56h12v1h-12zM0 57h1v1h-1zM2 57h3v1h-3zM6 57h1v1h-1zM8 57h3v1h-3zM14 57h3v1h-3zM18 57h1v1h-1zM20 57h1v1h-1zM22 57h3v1h-3zM26 57h1v1h-1zM30 57h1v1h-1zM34 57h1v1h-1zM38 57h2v1h-2zM41 57h2v1h-2zM44 57h3v1h-3zM48 57h4v1h-4zM53 57h2v1h-2zM58 57h1v1h-1zM60 57h1v1h-1zM0 58h1v1h-1zM2 58h3v1h-3zM6 58h1v1h-1zM9 58h2v1h-2zM13 58h2v1h-2zM18 58h3v1h-3zM22 58h4v1h-4zM27 58h1v1h-1zM29 58h2v1h-2zM33 58h1v1h-1zM36 58h2v1h-2zM39 58h3v1h-3zM44 58h1v1h-1zM47 58h1v1h-1zM49 58h3v1h-3zM53 58h1v1h-1zM55 58h2v1h-2zM58 58h3v1h-3zM0 59h1v1h-1zM6 59h1v1h-1zM8 59h1v1h-1zM11 59h1v1h-1zM14 59h3v1h-3zM22 59h1v1h-1zM25 59h2v1h-2zM30 59h1v1h-1zM32 59h2v1h-2zM37 59h2v1h-2zM42 59h1v1h-1zM44 59h2v1h-2zM49 59h2v1h-2zM54 59h2v1h-2zM57 59h4v1h-4zM0 60h7v1h-7zM8 60h3v1h-3zM12 60h3v1h-3zM17 60h3v1h-3zM22 60h2v1h-2zM25 60h2v1h-2zM28 60h2v1h-2zM32 60h1v1h-1zM34 60h1v1h-1zM36 60h1v1h-1zM40 60h3v1h-3zM44 60h2v1h-2zM48 60h2v1h-2zM52 60h2v1h-2zM55 60h1v1h-1zM57 60h1v1h-1zM60 60h1v1h-1z"/></svg></div>
+        <div class="addr">
+          Viale A. Volta 16<br>
+          6830 Chiasso<br>
+          <a href="tel:+41916958080">+41 91 695 80 80</a>
+          <div class="site"><a href="https://www.valam.ch" target="_blank" rel="noopener">www.valam.ch</a></div>
+        </div>
+      </div>
+    </div>
+    <!-- RETRO -->
+    <div class="face back">
+      <div class="lockup"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 647.58" role="img" aria-label="Valori Asset Management"><g transform="translate(-124.91,-604.94) scale(2.53951)"><path fill="#FFFFFF" d="M220.4 285.6l-1.2-.5-.6 1c-1.7 2.5-3.6 4.8-5.7 6.9-7.1 7.1-16 11.6-25.8 13.2l-1.5 .2 .2 1.5c.6 4.1 1.7 8.1 3.1 11.9l.4 1.2 1.3-.2c12.4-2.3 23.8-8.2 32.8-17.2 3.7-3.7 6.9-7.8 9.5-12.2l1.1-1.9-2.1-.4c-3.9-.8-7.8-2-11.5-3.5M243.2 269.9l-.1-1.2-1.2-.2c-2.9-.3-5.9-.9-8.7-1.9-9.5-3-17.7-8.8-23.6-16.8l0-.1c-4.1 3-7.7 6.5-10.9 10.4 7.7 9.8 17.9 17.4 30 20.8 8.1 2.3 17.2 2.9 17.2 2.9l-.5-2c-1.1-3.9-1.8-7.9-2.2-11.9M266.7 259.8c0-6.2 .9-12.2 2.5-17.6-4.4-1.8-9-3.1-13.8-3.9-2.4 6.4-3.8 13.7-3.8 21.5 0 7.8 1.4 15 3.7 21.3 4-8 7.9-14.6 11.4-19.9 0-.4 0-.9 0-1.4M293.1 302.7c-3.8 2.5-7.5 5.4-11.2 8.6-.6 .5-1.1 1-1.7 1.5 1.9 1.1 11.2 6.5 22.6 8.5 1.8-4.6 3.1-9.5 3.8-14.5-4.3-.7-10.1-2.7-13.5-4.1M273 319.3c-3.7 4-6.9 8.2-9.6 12.3 1.4 .7 5.5 2.7 9.8 5.8 6.4 4.7 9.5 8.7 10.1 9.6 4.3-3.3 8.2-7.2 11.4-11.5-.9-1-4.2-4.2-9-7.7-4.6-3.5-11-7.5-12.7-8.5M216.4 320.4c-7.6 3.5-14 9-18.4 15.8 3.1 3.9 6.6 7.5 10.6 10.5 4-6.1 9.7-11.1 16.5-14.6-1.7-4.5-3.7-8.8-6-12.9-.9 .4-1.8 .8-2.7 1.2M277.3 307.5c.1-.1 .2-.2 .3-.3 .2-.2 .4-.4 .6-.5 .3-.3 .6-.5 .9-.8 9-7.6 18.6-13.3 27.3-16.5-.8-5.2-2.2-10.2-4.3-14.9-3.8 1-11.2 3-15.9 5.5-6.8 11.7-11.8 23.3-15.5 33.8 2-2.1 4.2-4.2 6.5-6.3 .1 0 .1 0 .1 0M226.4 255.5l.1 .9 .7 .3c4 2.2 8.2 3.6 12.6 4.3l1.8 .3 0-1.8c-.1-6.9-1.2-13.6-3.5-20.1l-.4-1.2-1.3 .2c-4 .7-8 1.7-11.8 3.2l-1.4 .5 .5 1.4c1.4 3.9 2.4 7.9 2.7 12M197.8 336.6c0-.1 0-.1 0-.1l0 0zM197.8 336.6"/><path fill="#C6985F" d="M185.7 289.3c1.4 .6 8.7 3.7 14.2 6.4 5.1-3.2 9.6-7.1 13.5-11.6-12.7-7.1-21.5-9.2-23.6-9.6-2 4.7-3.4 9.6-4.1 14.8M282.6 249.8c-6.1 6.3-23.9 27.6-37 68.8-2.7-5.8-6.4-12.3-11.5-18.6-3.5 5.1-7.8 9.6-12.7 13.3 5 7.3 9 15.6 11.6 24.8 1.5 5.2 2.4 10.5 2.9 15.7l0 0c0 .5 0 1.1 .1 1.5 3.6 .7 7.3 1 11.1 1 2.8 0 5.5-.2 8.2-.5 .2-2.9 5-52.1 38.2-95.2-3.1-4.1-6.8-7.7-10.9-10.8"/></g><g transform="translate(-710.94,-215.95) scale(2.47023)"><path fill="#C6985F" d="M598.6 285.1c-1.6 1.2-3.6 1.4-5.3 1.4-3.2 0-6.4-.5-7.5-1.1-.4-.3-.5-.5-.5-.9l0-23.3c0-.4 .2-.7 .6-.9 .7-.2 2.6-.4 4.7-.4 7.7 0 12.4 5.4 12.4 14.3 0 5.4-1.9 9.2-4.4 10.9M626.6 310.5c-.4 0-1.4 0-2.8-.2-1.7-.3-4.8-1.1-8.6-5.1-4.2-4.5-9-10.8-14.9-18.3 6.4-5.9 8.7-11.2 8.7-16.4 0-5-3.2-8.4-5-9.7-3.7-2.7-8.5-3.2-13-3.2-2.2 0-7.6 .2-8.4 .2-.4 0-4.9-.2-8.1-.2-.7 0-1.1 .2-1.1 .6 0 .3 .3 .4 .6 .4 .6 0 1.8 .1 2.4 .2 2.3 .5 2.9 1.7 3.1 4.1 .1 2.3 .1 4.3 .1 15.4l0 12.5c0 6.9 0 12.5-.4 15.5-.2 2.1-.6 3.6-2 3.9-.7 .2-1.5 .3-2.2 .3-.4 0-.5 .2-.5 .4 0 .5 .3 .6 1.1 .6 2.1 0 6.6-.2 6.7-.2 .4 0 4.9 .2 8.8 .2 .8 0 1.1-.2 1.1-.6 0-.2-.1-.4-.6-.4-.6 0-2.2-.1-3.2-.3-2.1-.3-2.5-1.8-2.7-3.9-.4-3-.4-8.6-.4-15.5l0-1.7c0-.3 .1-.5 .5-.5l8.8 .1c.4 0 .6 .1 .9 .4 1.4 1.9 4.8 6.7 7.8 10.6 4 5.3 6.5 8.8 9.6 10.4 1.8 1 3.6 1.4 7.6 1.4l5.1 0c1.2 0 1.7-.1 1.7-.6 0-.2-.3-.4-.7-.4M483.3 301.6c-.4 0-.5 .4-.6 .9-.2 1.4-.9 3.2-1.9 4.3-1.7 2.1-4.8 2.1-8.6 2.1-5.5 0-7.4-.5-8.5-1.6-1.3-1.3-1.6-5.8-1.6-16.3l0-12.7c0-11.1 0-13.1 .2-15.4 .1-2.5 .7-3.7 2.7-4.1 .9-.1 1.9-.2 2.4-.2 .3 0 .5-.1 .5-.4 0-.4-.3-.6-1.1-.6-2.1 0-7.3 .2-7.7 .2-.3 0-4.8-.2-8-.2-.8 0-1.2 .2-1.2 .6 0 .3 .3 .4 .6 .4 .6 0 1.8 .1 2.4 .2 2.4 .5 2.9 1.7 3.1 4.1 .1 2.3 .1 4.3 .1 15.4l0 12.5c0 6.9 0 12.5-.3 15.5-.3 2.1-.7 3.6-2.1 3.9-.6 .2-1.5 .3-2.1 .3-.5 0-.6 .2-.6 .4 0 .5 .3 .6 1.1 .6 1.1 0 2.7-.1 4.1-.1 1.4 0 2.6-.1 2.9-.1 2.1 0 4.3 .1 7.3 .2 3 .1 6.7 .2 11.8 .2 3.8 0 4-.3 4.5-1.9 .6-2.1 1.1-6.4 1.1-7.1 0-.8-.1-1.1-.5-1.1M655.6 310.5c-.6 0-2.2-.1-3.2-.3-2.1-.3-2.6-1.8-2.8-3.9-.3-3-.3-8.6-.3-15.5l0-12.5c0-11.1 0-13.1 .1-15.4 .2-2.5 .7-3.7 2.7-4.1 .8-.1 1.2-.2 1.7-.2 .3 0 .6-.1 .6-.4 0-.4-.3-.6-1.1-.6-2.2 0-6.7 .2-7 .2-.4 0-4.9-.2-7.2-.2-.8 0-1.2 .2-1.2 .6 0 .3 .3 .4 .6 .4 .5 0 1.4 .1 2.2 .3 1.6 .4 2.3 1.6 2.5 4 .1 2.3 .1 4.3 .1 15.4l0 12.5c0 6.9 0 12.5-.4 15.5-.2 2.1-.6 3.6-2 3.9-.7 .2-1.5 .3-2.2 .3-.4 0-.5 .2-.5 .4 0 .5 .3 .6 1.1 .6 2.1 0 6.6-.2 7-.2 .3 0 4.8 .2 8.8 .2 .7 0 1.1-.2 1.1-.6 0-.2-.2-.4-.6-.4M528 309.8c-12.8 0-22.8-10.7-22.8-27.3 0-15.6 8.9-23.4 20.8-23.4 11.3 0 21.7 9.2 21.7 26.3 0 20.7-13.3 24.4-19.7 24.4M526.5 256.6c-19.6 0-28.1 16.4-28.1 27.9 0 12.8 8.2 28 27.7 28 17.2 0 28.4-13.2 28.4-29.1 0-16.6-11.9-26.8-28-26.8M413.9 287.9l-13.6 0c-.2 0-.3-.1-.2-.5l6.3-19.2c.3-1.1 .7-1.1 1.1 0l6.7 19.2c.1 .3 .1 .5-.3 .5M435.2 310.5c-.7 0-1.7-.1-2.8-.4-1.5-.5-3.6-1.6-6.1-7.9-4.4-10.9-15.6-40.3-16.6-43-.9-2.2-1.2-2.6-1.6-2.6-.4 0-.7 .5-1.6 2.8l-16.1 44.3c-1.3 3.5-2.7 6.2-6 6.7-.6 0-1.6 .1-2.1 .1-.4 0-.6 .1-.6 .4 0 .5 .4 .6 1.3 .6 3.4 0 7.3-.2 8.1-.2 .8 0 3.8 .2 5.5 .2 .7 0 1.1-.1 1.1-.6 0-.3-.2-.4-.7-.4l-.7 0c-1.2 0-2.7-.6-2.7-2.1 0-1.2 .3-3 1-4.7l4.2-12.6c.2-.4 .4-.6 .8-.6l15.3 0c.3 0 .5 .1 .6 .4l6.6 17.5c.5 1.2 0 1.8-.4 2-.3 0-.5 .2-.5 .5 0 .4 .8 .4 2.1 .5 5 .1 10.2 .1 11.2 .1 .8 0 1.5-.1 1.5-.6 0-.3-.3-.4-.8-.4M379.8 257.6c-2 0-5.1 .2-5.5 .2-.9 0-4.2-.2-7-.2-1.2 0-1.6 .2-1.6 .6 0 .4 .4 .4 .8 .4 .8 0 1.8 0 2.7 .3 .7 .4 .9 1.1 .9 1.7 0 .6-.3 1.6-.6 2.7-1.6 5.1-11.1 30-15.3 39.5l-13.6-36.5c-1.1-2.8-2-5-2-5.9 0-.5 .2-1.1 1-1.4 .6-.3 1.9-.4 2.7-.4 .5 0 .7-.1 .7-.5 0-.3-.7-.5-1.9-.5-2.8 0-6 .2-6.7 .2-.8 0-4.9-.2-8.3-.2-1.1 0-1.9 .1-1.9 .5 0 .3 .2 .5 .6 .5 .4 0 1.6 0 2.7 .3 2.5 .7 3.6 1.5 5.1 5.5l17.5 43.7c1.4 3.4 1.7 4.4 2.6 4.4 .7 0 1-1.1 3-5.4 1.6-3.5 4.8-11.2 9.2-21.6 3.6-8.8 7.2-17.3 7.9-19.3 2-4.9 3-6.1 4-6.7 1.3-.9 2.9-.9 3.4-.9 .5 0 .8-.1 .8-.5 0-.3-.4-.5-1.2-.5"/></g><g transform="translate(-716.73,-207.81) scale(2.46634)"><path fill="#FFFFFF" d="M546 337.7c-.7 0-2.2 0-2.3 0-.1 0-1.6 0-2.7 0-.2 0-.3 0-.3 .1 0 .1 0 .2 .1 .2 .3 0 .7 0 .8 .1 1 .2 1.1 .5 1.1 2.4l0 4c0 .4-.2 .7-.5 .8-.6 .4-1.8 .5-2.7 .5-2.1 0-4.3-.7-6.1-2.5-.9-.8-2.5-3.2-2.5-6.5 0-2.8 .9-4.9 2.3-6 1.8-1.4 3.6-1.6 5.1-1.6 3 0 4.9 1 5.5 1.9 .3 .6 .5 1.3 .5 1.6 0 .2 0 .3 .1 .3 .2 0 .3-.1 .3-.5 0-2.3 .1-3 .1-3.3 0-.1 0-.2-.3-.2-.5 0-1.4-.1-1.9-.3-.4-.1-2.1-.4-3.6-.4-1.8 0-4.1 .2-6.2 1.5-2.1 1.3-4 4-4 7.8 0 2.9 1.4 5.5 2.8 6.7 2.6 2.3 6 2.5 7.8 2.5 1.3 0 3.5-.2 5-1 .3-.2 .3-.2 .3-1.3l0-2.6c0-1 0-1.7 0-2.5 .1-.8 .3-1.2 .9-1.3 .3-.1 .4-.1 .6-.1 .1 0 .2-.1 .2-.2 0-.1-.1-.1-.4-.1M563.4 343.3c-.1 0-.2 .1-.2 .4-.2 .9-.5 1.4-1.1 1.7-.6 .2-1.6 .2-2.3 .2-2.3 0-2.6-.3-2.7-1.9 0-.5 0-3.2 0-4l0-2.1c0-.1 .1-.2 .2-.2 .4 0 2.7 .1 3.3 .1 1 .1 1.2 .5 1.3 .9 .1 .3 .1 .5 .1 .7 0 .2 0 .3 .1 .3 .2 0 .2-.3 .2-.5 0-.2 0-1 .1-1.5 .1-.8 .2-1.2 .2-1.3 0-.2-.1-.2-.1-.2-.1 0-.2 .1-.4 .3-.2 .2-.5 .3-1.1 .3-.5 .1-3.4 .1-3.8 .1-.1 0-.1-.1-.1-.3l0-6.5c0-.1 .1-.2 .1-.2 .3 0 2.9 0 3.3 .1 1.3 .1 1.5 .4 1.7 .8 .1 .2 .1 .6 .1 .8 0 .2 0 .3 .2 .3 .1 0 .1-.1 .1-.2 .1-.3 .1-1.4 .2-1.6 0-.7 .2-.9 .2-1.1 0-.1-.1-.2-.1-.2-.2 0-.3 .1-.4 .1-.2 0-.5 .1-1 .1-.5 0-5.2 0-5.4 0l-1 0c-.5 0-1.1 0-1.7 0-.2 0-.3 0-.3 .2 0 0 .1 .1 .2 .1 .2 0 .6 0 .8 .1 .7 .1 .9 .5 1 1.3 0 .8 0 1.4 0 5.1l0 4.2c0 2.2 0 4.1-.1 5.1-.1 .7-.2 1.2-.7 1.3-.2 0-.5 .1-.7 .1-.1 0-.2 0-.2 .1 0 .2 .1 .2 .4 .2 .4 0 .9 0 1.4 0 .5-.1 .9-.1 .9-.1 .4 0 .9 .1 1.9 .1 .9 0 2.2 .1 3.9 .1 1 0 1.2 0 1.3-.6 .1-.5 .3-2.1 .3-2.3 0-.2 0-.4-.1-.4M517.5 338.7l-4.5 0c0 0-.1-.1 0-.2l2-6.3c.2-.4 .3-.4 .4 0l2.2 6.3c.1 .1 .1 .2-.1 .2M524.6 346.2c-.2 0-.6-.1-.9-.2-.5-.1-1.2-.5-2.1-2.6-1.4-3.6-5.1-13.3-5.5-14.2-.2-.7-.3-.9-.5-.9-.1 0-.2 .2-.5 1l-5.4 14.6c-.4 1.2-.9 2.1-1.9 2.2-.2 0-.6 .1-.7 .1-.1 0-.2 0-.2 .1 0 .2 .1 .2 .4 .2 1.1 0 2.4-.1 2.7-.1 .2 0 1.3 .1 1.8 .1 .2 0 .4 0 .4-.2 0-.1-.1-.1-.3-.1l-.2 0c-.4 0-.9-.2-.9-.7 0-.4 .1-1 .3-1.6l1.4-4.2c.1-.1 .2-.2 .3-.2l5.1 0c.1 0 .1 .1 .2 .2l2.2 5.8c.1 .4 0 .6-.2 .6-.1 0-.1 .1-.1 .2 0 .1 .2 .1 .7 .2 1.6 0 3.3 0 3.7 0 .2 0 .4 0 .4-.2 0-.1-.1-.1-.2-.1M502 328.7c-1 0-1.8 0-2 0-.3 0-1.4 0-2.5 0-.3 0-.5 0-.5 .1 0 .1 .1 .2 .2 .2 .2 0 .8 0 1.2 .1 .7 .2 .9 .7 .9 2.3l.3 11.9c-.8-.7-3.4-3.6-5.7-6.1-3.6-3.9-7.1-7.7-7.5-8.1-.2-.2-.6-.8-.8-.8-.2 0-.3 .3-.3 1.2l0 13.5c0 2.2-.1 2.9-.7 3-.4 .1-.8 .2-1 .2-.1 0-.2 0-.2 .1 0 .2 .2 .2 .4 .2 1.1 0 2.1-.1 2.3-.1 .2 0 1.1 .1 2.5 .1 .3 0 .4 0 .4-.2 0-.1-.1-.1-.2-.1-.2 0-.7-.1-1.2-.2-.6-.2-.8-.8-.9-2.7l-.3-11.3c.8 .8 3.4 3.8 6.2 6.8 2.5 2.7 5.9 6.1 6.1 6.4 1.3 1.2 1.5 1.5 1.7 1.5 .2 0 .2-.2 .2-1.7l.1-13.8c0-1.4 .1-2 .9-2.1 .2-.1 .4-.1 .5-.1 .2 0 .3-.1 .3-.2 0-.1-.2-.1-.4-.1M655.4 328.5c-.1 0-.3 .1-.7 .1-.3 .1-.9 .1-1.6 .1l-8.9 0c-.3 0-1.2 0-1.8-.1-.7 0-.9-.3-1.1-.3-.1 0-.2 .3-.2 .5-.1 .2-.5 2.2-.5 2.4 0 .2 0 .3 .1 .3 .1 0 .1-.1 .2-.3 .1-.1 .2-.3 .4-.7 .4-.6 1-.7 2.4-.8l3.5 0 0 10c0 2.2 0 4.1-.1 5.1-.1 .7-.2 1.2-.7 1.3-.2 0-.5 .1-.7 .1-.1 0-.2 0-.2 .1 0 .2 .1 .2 .4 .2 .7 0 2.2-.1 2.3-.1 .1 0 1.6 .1 2.9 .1 .3 0 .4-.1 .4-.2 0-.1-.1-.1-.2-.1-.2 0-.7-.1-1.1-.1-.7-.1-.8-.6-.9-1.3-.1-1-.1-2.9-.1-5.1l0-10 3 0c2.2 .1 2.8 .6 2.9 1.3l0 .3c0 .3 .1 .4 .2 .4 .1 0 .1-.1 .1-.3 0-.3 .1-1.9 .1-2.6 0-.2 0-.3-.1-.3M609.1 343.3c-.1 0-.1 .1-.2 .4-.2 .9-.4 1.4-1.1 1.7-.6 .2-1.6 .2-2.2 .2-2.3 0-2.7-.3-2.8-1.9 0-.5 0-3.2 0-4l0-2.1c0-.1 .1-.2 .2-.2 .4 0 2.7 .1 3.4 .1 .9 .1 1.1 .5 1.2 .9 .1 .3 .1 .5 .1 .7 0 .2 .1 .3 .2 .3 .1 0 .1-.3 .1-.5 0-.2 .1-1 .1-1.5 .1-.8 .2-1.2 .2-1.3 0-.2 0-.2-.1-.2-.1 0-.2 .1-.4 .3-.2 .2-.5 .3-1.1 .3-.5 .1-3.4 .1-3.7 .1-.1 0-.2-.1-.2-.3l0-6.5c0-.1 .1-.2 .2-.2 .2 0 2.8 0 3.2 .1 1.3 .1 1.5 .4 1.7 .8 .1 .2 .1 .6 .1 .8 0 .2 .1 .3 .2 .3 .1 0 .2-.1 .2-.2 0-.3 .1-1.4 .1-1.6 .1-.7 .2-.9 .2-1.1 0-.1 0-.2-.1-.2-.1 0-.2 .1-.3 .1-.2 0-.6 .1-1 .1-.6 0-5.3 0-5.4 0l-1 0c-.5 0-1.2 0-1.7 0-.3 0-.4 0-.4 .2 0 0 .1 .1 .2 .1 .2 0 .6 0 .8 .1 .8 .1 1 .5 1 1.3 .1 .8 .1 1.4 .1 5.1l0 4.2c0 2.2 0 4.1-.2 5.1 0 .7-.2 1.2-.6 1.3-.3 0-.5 .1-.7 .1-.2 0-.2 0-.2 .1 0 .2 .1 .2 .3 .2 .4 0 .9 0 1.4 0 .5-.1 .9-.1 1-.1 .3 0 .9 .1 1.8 .1 .9 0 2.2 .1 4 .1 .9 0 1.1 0 1.3-.6 .1-.5 .3-2.1 .3-2.3 0-.2 0-.4-.2-.4M593.2 346.2c-.3 0-.9 0-1.6-.2-1-.3-1.2-1.7-1.2-2.5l-1.6-14.5c-.1-.5-.1-.7-.3-.7-.2 0-.3 .2-.4 .4l-6.9 14.8-7.2-14.8c-.1-.3-.2-.4-.4-.4-.1 0-.2 .2-.2 .5l-1.7 15.3c-.1 .9-.2 1.9-1 2-.3 .1-.5 .1-.7 .1-.1 0-.2 0-.2 .1 0 .2 .2 .2 .4 .2 .6 0 1.8-.1 2-.1 .2 0 1.3 .1 2.2 .1 .2 0 .4 0 .4-.2 0-.1-.1-.1-.2-.1-.1 0-.5-.1-.9-.1-.4-.1-.6-.4-.6-.8 0-.4 0-.8 0-1.2l1-10.9 .1 0c.2 .6 2.9 6.3 3.1 6.7 .1 .2 2.1 4.3 2.7 5.5 .5 .8 .6 1.1 .8 1.1 .2 0 .2-.3 .7-1.3l5.8-12.3 .1 0 1.1 12.3c.1 .4 0 .8-.1 .8-.1 .1-.1 .1-.1 .2 0 .1 .1 .2 .6 .2 .9 .1 3.4 .1 4 .1 .2 0 .5 0 .5-.2 0-.1-.1-.1-.2-.1M634.4 328.7c-.9 0-1.7 0-2 0-.2 0-1.4 0-2.4 0-.3 0-.5 0-.5 .1 0 .1 0 .2 .2 .2 .2 0 .7 0 1.2 .1 .7 .2 .9 .7 .9 2.3l.2 11.9c-.7-.7-3.3-3.6-5.6-6.1-3.7-3.9-7.2-7.7-7.5-8.1-.3-.2-.7-.8-.8-.8-.2 0-.3 .3-.3 1.2l0 13.5c0 2.2-.2 2.9-.7 3-.4 .1-.8 .2-1 .2-.1 0-.2 0-.2 .1 0 .2 .1 .2 .4 .2 1 0 2-.1 2.2-.1 .3 0 1.2 .1 2.5 .1 .3 0 .5 0 .5-.2 0-.1-.1-.1-.2-.1-.2 0-.8-.1-1.2-.2-.6-.2-.9-.8-.9-2.7l-.3-11.3c.7 .8 3.4 3.8 6.1 6.8 2.5 2.7 5.9 6.1 6.2 6.4 1.2 1.2 1.5 1.5 1.7 1.5 .2 0 .2-.2 .2-1.7l.1-13.8c0-1.4 .1-2 .8-2.1 .3-.1 .5-.1 .6-.1 .2 0 .3-.1 .3-.2 0-.1-.2-.1-.5-.1M341.8 338.7l-4.5 0c0 0-.1-.1 0-.2l2-6.3c.2-.4 .3-.4 .4 0l2.2 6.3c.1 .1 .1 .2-.1 .2M348.9 346.2c-.2 0-.6-.1-1-.2-.5-.1-1.1-.5-2-2.6-1.4-3.6-5.1-13.3-5.5-14.2-.3-.7-.4-.9-.5-.9-.1 0-.2 .2-.5 1l-5.4 14.6c-.4 1.2-.9 2.1-2 2.2-.1 0-.5 .1-.6 .1-.2 0-.2 0-.2 .1 0 .2 .1 .2 .4 .2 1.1 0 2.4-.1 2.7-.1 .2 0 1.2 .1 1.8 .1 .2 0 .4 0 .4-.2 0-.1-.1-.1-.3-.1l-.2 0c-.4 0-.9-.2-.9-.7 0-.4 .1-1 .3-1.6l1.4-4.2c.1-.1 .2-.2 .3-.2l5 0c.2 0 .2 .1 .3 .2l2.2 5.8c.1 .4 0 .6-.2 .6-.1 0-.2 .1-.2 .2 0 .1 .3 .1 .7 .2 1.7 0 3.4 0 3.8 0 .2 0 .4 0 .4-.2 0-.1-.1-.1-.2-.1M397.8 343.3c-.2 0-.2 .1-.3 .4-.1 .9-.4 1.4-1 1.7-.6 .2-1.7 .2-2.3 .2-2.3 0-2.6-.3-2.7-1.9 0-.5 0-3.2 0-4l0-2.1c0-.1 0-.2 .1-.2 .5 0 2.8 .1 3.4 .1 .9 .1 1.2 .5 1.3 .9 0 .3 0 .5 0 .7 0 .2 .1 .3 .2 .3 .2 0 .2-.3 .2-.5 0-.2 0-1 .1-1.5 0-.8 .2-1.2 .2-1.3 0-.2-.1-.2-.2-.2-.1 0-.2 .1-.3 .3-.2 .2-.6 .3-1.1 .3-.6 .1-3.5 .1-3.8 .1-.1 0-.1-.1-.1-.3l0-6.5c0-.1 0-.2 .1-.2 .3 0 2.9 0 3.3 .1 1.2 .1 1.5 .4 1.6 .8 .1 .2 .2 .6 .2 .8 0 .2 0 .3 .2 .3 .1 0 .1-.1 .1-.2 .1-.3 .1-1.4 .1-1.6 .1-.7 .2-.9 .2-1.1 0-.1 0-.2-.1-.2-.1 0-.2 .1-.3 .1-.2 0-.6 .1-1 .1-.5 0-5.2 0-5.4 0l-1 0c-.5 0-1.1 0-1.7 0-.2 0-.3 0-.3 .2 0 0 0 .1 .1 .1 .3 0 .7 0 .8 .1 .8 .1 1 .5 1.1 1.3 0 .8 0 1.4 0 5.1l0 4.2c0 2.2 0 4.1-.1 5.1-.1 .7-.2 1.2-.7 1.3-.2 0-.5 .1-.7 .1-.1 0-.2 0-.2 .1 0 .2 .1 .2 .4 .2 .3 0 .9 0 1.4 0 .4-.1 .8-.1 .9-.1 .3 0 .9 .1 1.8 .1 1 0 2.3 .1 4 .1 .9 0 1.1 0 1.3-.6 .1-.5 .3-2.1 .3-2.3 0-.2 0-.4-.1-.4M418.4 328.5c-.1 0-.3 .1-.6 .1-.4 .1-1 .1-1.7 .1l-8.9 0c-.2 0-1.1 0-1.8-.1-.7 0-.9-.3-1.1-.3-.1 0-.2 .3-.2 .5 0 .2-.5 2.2-.5 2.4 0 .2 0 .3 .1 .3 .1 0 .2-.1 .2-.3 .1-.1 .2-.3 .4-.7 .4-.6 1-.7 2.4-.8l3.5 0 0 10c0 2.2 0 4.1-.1 5.1-.1 .7-.2 1.2-.7 1.3-.2 0-.5 .1-.7 .1-.1 0-.2 0-.2 .1 0 .2 .2 .2 .4 .2 .7 0 2.2-.1 2.3-.1 .1 0 1.6 .1 2.9 .1 .3 0 .4-.1 .4-.2 0-.1 0-.1-.2-.1-.2 0-.7-.1-1-.1-.8-.1-.9-.6-1-1.3-.1-1-.1-2.9-.1-5.1l0-10 3 0c2.2 .1 2.8 .6 2.9 1.3l0 .3c0 .3 .1 .4 .2 .4 .1 0 .2-.1 .2-.3 0-.3 0-1.9 0-2.6 0-.2 0-.3-.1-.3M376.5 336.4l-.6-.5c-2.3-1.8-2.9-2.7-2.9-4 0-1.7 1.3-2.7 2.9-2.7 2.2 0 2.8 1 3 1.2 .1 .3 .2 .9 .3 1.2 0 .2 0 .3 .1 .3 .2 0 .2-.2 .2-.5 0-1.6 .1-2.4 .1-2.5 0-.2 0-.2-.2-.2-.2 0-.4 0-.9-.1-.5-.2-1.2-.3-2.1-.3-3 0-4.9 1.8-4.9 4.3 0 1.6 .5 3.1 3 5.1l1.1 .9c2 1.7 2.7 2.6 2.7 4.2 0 1.5-1.1 3.2-3.4 3.2-1.5 0-3.1-.7-3.5-2.4 0-.4 0-.7 0-.9 0-.2 0-.3-.2-.3-.1 0-.2 .1-.2 .4 0 .4-.1 1.3-.1 2.5 0 .6 0 .7 .4 .9 .9 .5 2 .6 3.1 .6 1.3 0 2.6-.3 3.6-1 1.6-1.1 2-2.9 2-3.9 0-1.9-.7-3.3-3.5-5.5M359.8 336.4l-.7-.5c-2.2-1.8-2.8-2.7-2.8-4 0-1.7 1.2-2.7 2.9-2.7 2.1 0 2.8 1 2.9 1.2 .2 .3 .3 .9 .3 1.2 0 .2 .1 .3 .2 .3 .1 0 .2-.2 .2-.5 0-1.6 .1-2.4 .1-2.5 0-.2-.1-.2-.3-.2-.2 0-.3 0-.8-.1-.6-.2-1.3-.3-2.2-.3-3 0-4.9 1.8-4.9 4.3 0 1.6 .6 3.1 3.1 5.1l1.1 .9c2 1.7 2.7 2.6 2.7 4.2 0 1.5-1.1 3.2-3.4 3.2-1.6 0-3.1-.7-3.5-2.4-.1-.4-.1-.7-.1-.9 0-.2 0-.3-.1-.3-.1 0-.2 .1-.2 .4 0 .4-.1 1.3-.1 2.5 0 .6 0 .7 .3 .9 1 .5 2.1 .6 3.2 .6 1.3 0 2.5-.3 3.5-1 1.7-1.1 2-2.9 2-3.9 0-1.9-.6-3.3-3.4-5.5M458.1 346.2c-.2 0-.9 0-1.5-.2-1.1-.3-1.2-1.7-1.3-2.5l-1.6-14.5c0-.5-.1-.7-.3-.7-.1 0-.2 .2-.3 .4l-7 14.8-7.2-14.8c-.1-.3-.2-.4-.3-.4-.2 0-.3 .2-.3 .5l-1.7 15.3c-.1 .9-.2 1.9-.9 2-.4 .1-.6 .1-.7 .1-.2 0-.3 0-.3 .1 0 .2 .2 .2 .4 .2 .7 0 1.8-.1 2-.1 .2 0 1.3 .1 2.2 .1 .3 0 .4 0 .4-.2 0-.1-.1-.1-.2-.1-.1 0-.5-.1-.9-.1-.3-.1-.6-.4-.6-.8 0-.4 0-.8 0-1.2l1-10.9 .1 0c.2 .6 2.9 6.3 3.1 6.7 .1 .2 2.1 4.3 2.8 5.5 .4 .8 .5 1.1 .7 1.1 .2 0 .3-.3 .8-1.3l5.7-12.3 .1 0 1.1 12.3c.1 .4 .1 .8 0 .8-.2 .1-.2 .1-.2 .2 0 .1 .1 .2 .6 .2 .9 .1 3.5 .1 4 .1 .3 0 .5 0 .5-.2 0-.1-.1-.1-.2-.1M472.1 338.7l-4.5 0c-.1 0-.1-.1-.1-.2l2.1-6.3c.1-.4 .3-.4 .4 0l2.2 6.3c0 .1 0 .2-.1 .2M479.2 346.2c-.3 0-.6-.1-1-.2-.5-.1-1.2-.5-2-2.6-1.4-3.6-5.1-13.3-5.5-14.2-.3-.7-.4-.9-.5-.9-.2 0-.3 .2-.5 1l-5.4 14.6c-.4 1.2-.9 2.1-2 2.2-.2 0-.5 .1-.7 .1-.1 0-.2 0-.2 .1 0 .2 .2 .2 .5 .2 1.1 0 2.4-.1 2.6-.1 .3 0 1.3 .1 1.9 .1 .2 0 .3 0 .3-.2 0-.1 0-.1-.2-.1l-.2 0c-.4 0-.9-.2-.9-.7 0-.4 .1-1 .3-1.6l1.4-4.2c.1-.1 .1-.2 .3-.2l5 0c.1 0 .2 .1 .2 .2l2.2 5.8c.2 .4 0 .6-.1 .6-.1 0-.2 .1-.2 .2 0 .1 .3 .1 .7 .2 1.7 0 3.4 0 3.7 0 .3 0 .5 0 .5-.2 0-.1-.1-.1-.2-.1"/></g></svg></div>
+    </div>
+  </div>
+</div>
+
+<div class="hint">Tocca il biglietto per girarlo</div>
+
+<div class="actions">
+  <button class="btn primary" id="saveBtn" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+    Salva contatto
+  </button>
+  <a class="btn" href="tel:+41916958080">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    Chiama
+  </a>
+  <a class="btn" href="mailto:federico.brambilla@valam.ch">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    Email
+  </a>
+  <a class="btn" href="https://www.valam.ch" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    Sito web
+  </a>
+</div>
+
+<script>
+  // Giro del biglietto: clic, tocco oppure tastiera (Invio / Spazio)
+  const scene = document.getElementById('scene');
+  const flip = () => scene.classList.toggle('flipped');
+  scene.addEventListener('click', (e) => { if (!e.target.closest('a')) flip(); });
+  scene.addEventListener('keydown', (e) => {
+    if (e.target === scene && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); flip(); }
+  });
+
+  // Contatto in formato vCard (lo stesso contenuto del codice QR)
+  const VCARD = "BEGIN:VCARD\r\nVERSION:3.0\r\nN:Brambilla;Federico\r\nFN:Federico Brambilla\r\nORG:Valori Asset Management\r\nTITLE:Assistant Portfolio Manager & Analyst\r\nEMAIL:federico.brambilla@valam.ch\r\nTEL;TYPE=WORK:+41916958080\r\nADR;TYPE=WORK:;;Viale A. Volta 16;Chiasso;;6830;Switzerland\r\nURL:https://www.valam.ch\r\nEND:VCARD\r\n";
+  document.getElementById('saveBtn').addEventListener('click', () => {
+    const blob = new Blob([VCARD], {type:'text/vcard;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Federico_Brambilla.vcf';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  });
+</script>
+
+</body>
+</html>
